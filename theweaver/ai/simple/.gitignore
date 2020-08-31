@@ -1,0 +1,9 @@
+# ignore some files
+venv
+.idea
+
+# temporary files
+*.log
+*.pot
+*.pyc
+__pycache__/
