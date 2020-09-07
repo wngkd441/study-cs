@@ -1,0 +1,67 @@
+##Lecture 2
+
+# training model
+def train(images, labels):
+  return model
+ 
+# predict image
+def predict(model, test_images):
+  return test_labels
+
+# K-Nearest Neighbors : Take majority vote from K closest points # In code file
+  # K가 클수록 smoothing, 변화에 둔감. 적당한 K 값으로 better model
+  # Neighbor를 결정하는 기준 : Distance Metric
+    # L1 distance, L2 (Euclidean) distance
+  # Well classify가 안 되므로 not good model
+    
+# Data를 split : Train datsets, Validation datasets, Test datasets
+  # Validation으로 검증 후 test data를 predict
+  # Cross-Validation : Validation sets을 folds로 split ( usually 20% )
+  
+# Linear classification : f(x,W) = Wx + b
+  # W = Weight, x = Input, b = bias
+  # Weight이라는 template으로 각 class에 얼마나 fit하는지 score를 보여줌.
+  # Linear하다는 한계점이 있음.
+  
+
+## Lecture 3
+
+# Loss function : Tell us how bad the classifier model is
+  # Support Vector Machine (SVM) Loss ( as known as Hinge Loss )  # In code file
+  # Cross-Entropy Loss ( aka Softmax Loss )
+    # Much used in Deep Learning
+  
+# Regularization : Model should be simple to works on test data
+  # L1 Regularization, L2 Regularization, Elastic net, Max Norm Regularization, Dropout, Batch Norm Regularization
+  
+# Optimization : Update W to minimize Loss
+  # Gradient Descent : Loss의 변화율에 따라 W를 update
+    # Stochastic Gradient Descent (SGD) : Data가 너무 많을 때, minibatch를 사용해 Sum을 추정. # In code file
+  # Gradient Check : Analytic Gradient를 구하고 numerical gradient로 check.
+ 
+# Image Feature : Raw data의 pixel은 classify하기 힘듬.
+  # Motivation : 극좌표로 변환하여 well classify되는 feature.
+  # Color Histogram : Color feature.
+  # Histogram of Oriented Gradients (HoG) : Oriented Edge Feature.
+  
+
+## Lecture 4
+
+# Backpropagation : Layer가 많아질수록 앞쪽의 layer들의 흔적이 사라지는 것을 방지. 뒤에서부터 gradient를 역추적.
+  # 뒤에서부터 1로 시작해 해당 function을 미분으로 gradient 구함.
+  # Layer를 지날수록 Chain Rule을 사용해 Summation.
+  # Local gradient : 해당 연산의 input과 output으로 인한 gradient.
+  # Gates
+    # add gate : Gradient distributor. 앞의 gradient에 같은 값을 distribute.
+    # max gate : Gradient router. 큰 input에 gradient를 모두 줌. 작은 input은 0.
+    # mul gate : Gradient switcher. Input의 비율을 switch.  # In code file
+
+# Sigmoid function : 1 /[ 1 + exp(-x) ]. 확률(가능성)의 의미를 가짐.
+
+# Forward / Backward
+  # Forward : Operation을 따라 result를 계산. gradient를 저장.
+  # Backward : Chain rule을 따라 거꾸로 loss의 gradient를 계산. 
+  
+# Avtivation Functions
+  # Sigmoid function, Leaky ReLU, tanh, Maxout, ReLU, ELU
+    # ReLU is powerful
