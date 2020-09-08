@@ -24,10 +24,10 @@ knn으로는 2,3,4를 구별할 수 없음
 #### - linear classification   
 ->parametric approach   
 x- > f(x,W) -> class score   
-'''
+```
 f(x,W)=Wx (행렬곱)   
 f(x,W,b)=Wx+b (b는 bias)
-'''
+```
 *이미지의 feature를 추출하고 (ex. color histogram, edge) linear classfier에 적용   
 
 
@@ -38,15 +38,15 @@ loss function은 score에 대해 불만족하는 정도에 대해서 정량화�
 *loss가 작아야 좋다.
 
 #### - svm loss(hinge loss)
-'''
+```
  Li = Σmax(0,sj-syi+1) (j≠yi, syi : correct lable score, sj : incorrect lable score)
-'''
+```
 ->correct lable의 score가 incorrect lable의 score보다 1이상 크면 loss=0   
 hinge loss의 한계는 loss가 0이 되도록 하는 W값이 여러개 일 수 있다.   
 ->regularization 필요   
-'''
+```
  L = ΣΣmax(0,sj-syi+1) + λR(W)
-'''
+```
 
 Q1. regularization을 하는 것은 loss가 0이 되게 하는 W중 가장 작은 것을 택하기 위함 같은데 W가 왜 작아야 하나?   
 Q2."regularization을 하게 되면 training data에 대한 정확도는 떨어지지만 결과적으로 test set에 대한 퍼포먼스는 더 좋아진다."는 말이 무슨 의미인가요?   
@@ -54,9 +54,9 @@ Q2."regularization을 하게 되면 training data에 대한 정확도는 떨어�
 결과적으로 일반화에 적합한 특성을 갖게 만드는 것이라 볼 수 있다.   
 
 #### - softmax classifier
-'''
+```
 Li = -log(P(Y=k|X=xi))
-'''
+```
 
 #### - svm vs softmax 
 score가 살짝씩 변형되었을 때 svm은 Li = Σmax(0,sj-syi+1) 식의 +1에 의해 safety margin이 생겨 비교적 둔감하고 softmax는 민감하다.   
@@ -73,9 +73,9 @@ w를 살짝 변화시켰을 때 loss의 기울기를 보고 loss가 작아지는
 2) analytic gradient : exact, fast, error-prone   
 ->항상 analytic gradient를 사용하고 numerical gradient를 이용해서 검증하기   
 weights 업데이트
-'''
+```
 weights += -step_size*weights_grad
-'''
+```
 
 Q. optimization의 방법 중 하나인 경사하강법에서 웨이트를 업데이트할 때, 왜 가중치의 변화에 따른 로스의 변화량을 가중치에 빼주나?   
 (자료에서 보면 기울기를 구할때 (로스의 변화량)/(웨이트의 변화량)으로 구함)   
@@ -85,10 +85,13 @@ Q. optimization의 방법 중 하나인 경사하강법에서 웨이트를 업�
 
 ### <4강 backpropagation and NN part1>
 
-*우리가 알고 싶은 것은 input에 대한 gradient   
+우리가 알고 싶은 것은 input에 대한 gradient이다.___
 즉, input이 마지막 단에 얼마나 영향을 미치는 가   
 그런데 input이 마지막 단에 미치는 영향을 한번에 구할 수 없음   
--> chain rule을 이용하면  df/dx=(df/dq)*(dq/dx)   
+-> chain rule을 이용하면
+```
+df/dx=(df/dq)*(dq/dx)
+```
 여기서 dq/dx는 local gradient라고 하고, local gradient를 구하기 위해서는 forward pass   
 df/dq는 global gradient라고 하고, global gradient를 구하기 위해서는 backward pass   
 backpropagation(=backward pass)   
