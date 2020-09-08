@@ -85,7 +85,7 @@ Q. optimization의 방법 중 하나인 경사하강법에서 웨이트를 업�
 
 ### <4강 backpropagation and NN part1>
 
-우리가 알고 싶은 것은 input에 대한 gradient이다.___
+우리가 알고 싶은 것은 input에 대한 gradient이다.   
 즉, input이 마지막 단에 얼마나 영향을 미치는 가   
 그런데 input이 마지막 단에 미치는 영향을 한번에 구할 수 없음   
 -> chain rule을 이용하면
