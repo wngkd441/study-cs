@@ -7,7 +7,8 @@ linear한 단순 합으로 구해진 입력을 non-linear하게 변경해주는 
 
 #### 1. sigmoid
 good   
-- range [0,1] -> 입력에 대해 가중치의 영향력을 주기에 적합   
+- range [0,1] -> 입력에 대해 가중치의 영향력을 주기에 적합
+
 bad   
 - saturated neurons kill the gradients   
 (= 입력이 10이상이거나 -10이하가 되면 기울기가 거의 0이 나옴)   
@@ -26,6 +27,7 @@ df/dwi는 항상 양수이므로 dl/dwi의 부호는 dl/df에 의해 결정된�
 good   
 - range [-1,1]
 - zero centered 
+
 bad   
 - still kill gradients when saturated
 
@@ -37,6 +39,7 @@ good
 - not saturate (in + region)
 - computationally efficient
 - converges much faster
+
 bad
 - not zero centered output
 - kill gradient (in - region)
