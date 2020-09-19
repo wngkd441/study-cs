@@ -14,14 +14,9 @@ bad
 - sigmoid outputs are not zero-centered
 -> slow convergence   
 (+ not zero centered output에 의해 slow convergence가 생기는 이유:   
-```
-f(Σwi*xi+b) --> df/dwi = xi
-```
+```f(Σwi*xi+b) --> df/dwi = xi```   
 이때 시그모이드 함수의 결과는 항상 양수이므로 xi가 항상 양수이고 df/dwi도 항상 양수   
-chain rule에 의해
-```
-dl/dwi = dl/df * df/fwi
-```
+chain rule에 의해 ```dl/dwi = dl/df * df/fwi```   
 df/dwi는 항상 양수이므로 dl/dwi의 부호는 dl/df에 의해 결정된다.   
 따라서 dl/df가 양수면 모든 i에 대한 df/wi는 모두 양수가 되고, dl/df가 음수면 모든 i에 대한 df/dwi가 음수가 되어   
 지그재그 모양으로 이동을 하게 되어 convergence가 느려진다.)   
