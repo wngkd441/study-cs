@@ -141,8 +141,86 @@ ReLU에 최적인 방법
 
 ### <6강 trainging NN part2>
 
+### optimization
+(싸코 블로그 참고)
+
+1. 확률적 경사하강법 Stochastic Gradient Descent
+
+SGD는 손실함수의 기울기를 계산하여서 이 기울기 값에 학습률(Learning Rate)를 계산하여 이 결과 값으로 기존의 가중치 값을 갱신한다.
+
+```
+class SGD:
+    def __init__(self, lr=0.01):
+        self.lr = lr
+    
+    def update(self, params, grads):
+        for key in params.keys():
+            params[key] -= self.lr * grads[key]
+```
+위에서 update 함수를 통해 모듈화되어 가중치를 갱신할 수 있다.
+
+경사하강법의 단점
+
+경사하강법은 무작정 기울어진 방향으로 이동하는 방식이기 때문에 탐색경로가 비효율적이어서 한참을 탐색하게 된다. 또한 SGD는 방향에 따라서 기울기 값이 달라지는 경우에 적합하지 않은데 최소값의 방향으로만 움직이기 때문에 본래의 최저점으로 기울기의 방향이 좀처럼 향하지 않게 되고 다른 방향을 가리키게 되어 비효율이게 되기도 한다.
 
 
+#### 2. 모멘텀 Momentum
+모멘텀은 '운동량'을 의미한다. 기울기에서 속도의 개념이 추가된 것으로 고등학교 물리 시간을 떠올려보면 자세히는 아니지만 지상의 마찰력 때문에 물체의 이동속도가 점점 감소한다고 배웠던 기억이 어렴풋이 기억이 난다. 속도가 크게 나올수록 기울기가 크게 업데이트 되어 확률적 경사하강법이 가지는 단점을 보완할 수 있다.
+
+Momentum은 마찰력/공기저항 같은 것에 해당하며 기울기 업데이트 시 이 폭을 조절하는 역할을 한다. 이에 따라 속도 velocity가 변화한다.
+
+
+```
+class Momentum:
+    def __init__(self, lr=0.01, momentum=0.9):
+        self.lr = lr
+        self.momentum = momentum
+        self.v = None
+    
+    def update(self, params, grads):
+        if self.v is None:
+            self.v = {}
+            for key, val in params.items():
+                self.v[key] = np.zeros_like(val)
+        
+        for key in params.keys():
+            self.v[key] = self.momentum * self.v[key] 
+```
+
+#### 3. AdaGrad
+신경망 학습에서의 학습률 learning rate의 값은 일종의 보폭으로 생각할 수 있는데 한 번 갱신하는 가중치의 값을 양을 결정한다. 학습률을 너무 작게하면 보폭이 너무 작아서 많은 걸음을 걸어야 하므로 학습 시간을 아주 길게 해야 한다. 반대로 너무 크게 하면 최적의 점을 계속 지나치게 된다.
+
+학습률을 정하는 방법으로 학습률 감소learning rate decay가 있다고 한다. 학습을 진행하면서 점차 학습률을 줄여나가는 방법이다. 하지만 학습이 계속되면서 학습률이 0에 가까워져서 학습이 진행이 안되는 문제가 발생한다.
+
+AdaGrad는 과거의 기울기 값을 제곱해서 계속 더하는 식으로 학습률을 낮추는데 학습이 진행될수록 제곱의 값으로 학습의 정도가 크게 떨어진다. 
+이를 개선하기 위해서 RMSProp이 사용된다. RMSProp은 과거의 모든 기울기를 균일하게 더하지 않고 새로운 기울기의 정보만 반영하도록 해서 학습률이 크게 떨어져 0에 가까워지는 것을 방지하는 방법이다.
+
+
+```
+class AdaGrad:
+    def __init__(self, lr=0.01):
+        self.lr = lr
+        self.h = None
+    
+    def update(self, params, grads):
+        if self.h is None:
+            self.h = {}
+            for key, val in params.items():
+                self.h[key] = np.zeros_like(val)
+                
+        for key in params.keys():
+            self.h[key] += grads[key] * grads[key]
+            params[key] -= self.lr * grads[key] / (np.sqrt(self.h[key]) + 1e-7)
+```
+
+#### 4. Adam
+앞에서 언급했던 Momentum과 AdaGrad를 섞은 기법이라고 보면 된다.
+
+따라서 하이퍼파라미터도 그만큼 많다. 모멘텀에서 사용하는 계수와 학습률에 대한 계수가 사용된다.
+
+학습률을 줄여나가고 속도를 계산하여 학습의 갱신강도를 적응적으로 조정해나가는 방법이다.
+
+### Regularization (dropout)
 
 
 
