@@ -220,6 +220,9 @@ class AdaGrad:
 
 학습률을 줄여나가고 속도를 계산하여 학습의 갱신강도를 적응적으로 조정해나가는 방법이다.
 
+##### Adam을 가장 일반적으로 많이 사용한다.
+
+
 ### Dropout
 ##### 일부 노드들을 0으로 설정하여 연결이 끊기도록 하는 것
 * regularize하는 목적으로 사용
@@ -243,7 +246,8 @@ during train:
 * inverted dropout은 train시에 p를 나누어줌
 * 일반적으로 inverted dropout을 더 많이 사용함
 
-### Convolutional NN
+### <7강 Convolutional NN>
+
 
 
 
