@@ -248,7 +248,7 @@ during train:
 
 ### <7강 Convolutional NN>
 
-#### conv layer
+#### 1. conv layer
 * Accepts a volume of size W1×H1×D1
 * Requires four hyperparameters:
     * Number of filters K,
@@ -262,7 +262,7 @@ during train:
 * With parameter sharing, it introduces F⋅F⋅D1 weights per filter, for a total of (F⋅F⋅D1)⋅K weights and K biases.
 * In the output volume, the d-th depth slice (of size W2×H2) is the result of performing a valid convolution of the d-th filter over the input volume with a stride of S, and then offset by d-th bias.
 
-#### pooling layer
+#### 2. pooling layer
 ##### max pooling을 가장 많이 사용
 * Accepts a volume of size W1×H1×D1
 * Requires two hyperparameters:
@@ -275,7 +275,7 @@ during train:
 * Introduces zero parameters since it computes a fixed function of the input
 * For Pooling layers, it is not common to pad the input using zero-padding.
 
-#### Fully connected layer (FC layer)
+#### 3. Fully connected layer (FC layer)
 
 
 
