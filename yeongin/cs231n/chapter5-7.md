@@ -277,5 +277,16 @@ during train:
 
 #### 3. Fully connected layer (FC layer)
 
-
+#### Summary
+* ConvNets stack CONV, POOL, FC layers
+* trend towards smaller filters and deeper architectures
+* trend towards getting rid of POOL/FC layers (just CONV)
+* typical architectures look like
+```
+[(CONV - RELU)*N - POOL]*M - (FC - RELU)*K - SOFTMAX
+```
+* N is up to ~5
+* M is large
+* 0 <= K <= 2
+    
 
