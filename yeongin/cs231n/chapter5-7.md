@@ -248,7 +248,18 @@ during train:
 
 ### <7강 Convolutional NN>
 
-
+* Accepts a volume of size W1×H1×D1
+* Requires four hyperparameters:
+    * Number of filters K,
+    * their spatial extent F,
+    * the stride S,
+    * the amount of zero padding P.
+* Produces a volume of size W2×H2×D2 where:
+    * W2=(W1−F+2P)/S+1
+    * H2=(H1−F+2P)/S+1 (i.e. width and height are computed equally by symmetry)
+    * D2=K
+* With parameter sharing, it introduces F⋅F⋅D1 weights per filter, for a total of (F⋅F⋅D1)⋅K weights and K biases.
+* In the output volume, the d-th depth slice (of size W2×H2) is the result of performing a valid convolution of the d-th filter over the input volume with a stride of S, and then offset by d-th bias.
 
 
 
