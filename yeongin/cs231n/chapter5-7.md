@@ -220,7 +220,30 @@ class AdaGrad:
 
 학습률을 줄여나가고 속도를 계산하여 학습의 갱신강도를 적응적으로 조정해나가는 방법이다.
 
-### Regularization (dropout)
+### Dropout
+##### 일부 노드들을 0으로 설정하여 연결이 끊기도록 하는 것
+* regularize하는 목적으로 사용
+* batch normalization을 사용하는 경우에는 잘 사용하지 않음
+* test할 때는 모든 뉴론을 키고 사용
+* test시에 결과값과 train시의 결과값의 기대값이 다름
+```
+ex)
+p=0, input = (x,y), output = a
+
+during test:
+    a = w0*x + w1*y
+    
+during train:
+    E(a) = 1/4 * (w0*0 + w1*0 + w0*0 + w1*y + w0*x + w1*0 + w0*x + w1*y)
+         = 1/2 * (w0*x + w1*y)
+         
+=> E(a) = p*a
+```
+-> test시에 결과값에 p를 곱해주어 scaling한다.
+* inverted dropout은 train시에 p를 나누어줌
+* 일반적으로 inverted dropout을 더 많이 사용함
+
+### Convolutional NN
 
 
 
