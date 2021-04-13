@@ -4,11 +4,11 @@
 
 ## Programming - Intermediate
 
-### 파이썬 SW문제해결 기본 List1
+1. 파이썬 SW문제해결 기본 List1
 
-### 파이썬 SW문제해결 기본 List2
+2. 파이썬 SW문제해결 기본 List2
 
+3. 파이썬 SW문제해결 기본 String
 
-
-
+4. 파이썬 SW문제해결 기본 Stack1
 
