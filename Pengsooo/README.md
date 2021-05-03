@@ -27,4 +27,4 @@
 ### 3. Algorithm STUDY
 
 - SW Expert Academy (SWEA)
-- Backjoon
+- Baekjoon Online Judge
